@@ -42,16 +42,16 @@ const Navbar = () => {
   //     window.addEventListener("scroll", handleScroll);
 
   return (
-    <nav className="flex fixed w-full">
+    <nav className="flex fixed w-screen">
       <div className="flex flex-row w-screen items-center justify-between mx-4  md:justify-between md:mx-20 py-6">
         <div className="flex  items-center gap-10">
-          <div>
+          <Link href='/'>
             <Image
               src={theme === "light" ? logo_white : logo_dark}
               alt="ANIMASIVE"
               height={40}
             />
-          </div>
+          </Link>
           <ul className="hidden lg:flex space-x-5 ">
             <Link href="/">HOME</Link>
             <Link href="/shop">SHOP</Link>
@@ -65,7 +65,6 @@ const Navbar = () => {
           <AccountCircleIcon fontSize="large" />
         </div>
 
-        
         <div className="flex lg:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -79,41 +78,61 @@ const Navbar = () => {
               className="flex flex-col items-center"
             >
               <DropdownMenuItem>
-                <div className="p-6 border-b-2">
-                  <AccountCircleIcon fontSize="large" />
+                <div className="p-6 border-b-2 focus:bg-none">
+                  <AccountCircleIcon fontSize="large" className="cursor-pointer" />
                 </div>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem className="bg-transparent">
                 <ul className="flex  items-center flex-col gap-3 border-b-2 pb-3">
-                  <Link href="/">HOME</Link>
-                  <Link href="/shop">SHOP</Link>
-                  <Link href="/contact">CONTACT</Link>
+                  <Link className="" href="/">
+                    HOME
+                  </Link>
+                  <Link className="" href="/shop">
+                    SHOP
+                  </Link>
+                  <Link className="" href="/contact">
+                    CONTACT
+                  </Link>
                 </ul>
               </DropdownMenuItem>
 
               {/* theme */}
               <div className="flex items-center flex-col gap-3 pb-3">
                 <DropdownMenuSub>
-                  <DropdownMenuSubTrigger className="flex items-center justify-center">
+                  <DropdownMenuSubTrigger className="flex items-center justify-center cursor-pointer">
                     <span>Theme</span>
                   </DropdownMenuSubTrigger>
 
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent className="flex flex-col mr-8 items-center">
                       <DropdownMenuItem>
-                        <span onClick={() => setTheme("light")}>light</span>
+                        <span
+                          className="w-full cursor-pointer"
+                          onClick={() => setTheme("light")}
+                        >
+                          light
+                        </span>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <span onClick={() => setTheme("dark")}>dark</span>
+                        <span
+                          className="w-full cursor-pointer"
+                          onClick={() => setTheme("dark")}
+                        >
+                          dark
+                        </span>
                       </DropdownMenuItem>
-
                       <DropdownMenuItem>
-                        <span onClick={() => setTheme("system")}>system</span>
+                        <span
+                          className="w-full cursor-pointer"
+                          onClick={() => setTheme("system")}
+                        >
+                          system
+                        </span>
                       </DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <ShoppingCartIcon />
+                <ShoppingCartIcon className="cursor-pointer" />
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
