@@ -42,7 +42,7 @@ const Navbar = () => {
   //     window.addEventListener("scroll", handleScroll);
 
   return (
-    <nav className="flex fixed w-screen">
+    <nav className="flex fixed w-full bg-white dark:bg-[#121212] z-50">
       <div className="flex flex-row w-screen items-center justify-between mx-4  md:justify-between md:mx-20 py-6">
         <div className="flex  items-center gap-10">
           <Link href='/'>
@@ -65,6 +65,8 @@ const Navbar = () => {
           <AccountCircleIcon fontSize="large" />
         </div>
 
+    {/* responsive for phones */}
+
         <div className="flex lg:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -75,7 +77,7 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="flex flex-col items-center"
+              className="flex flex-col items-center bg-white dark:bg-[#121212]"
             >
               <DropdownMenuItem>
                 <div className="p-6 border-b-2 focus:bg-none">
@@ -104,7 +106,7 @@ const Navbar = () => {
                   </DropdownMenuSubTrigger>
 
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent className="flex flex-col mr-8 items-center">
+                    <DropdownMenuSubContent className="flex flex-col mr-8 items-center dark:bg-[#121212]">
                       <DropdownMenuItem>
                         <span
                           className="w-full cursor-pointer"
