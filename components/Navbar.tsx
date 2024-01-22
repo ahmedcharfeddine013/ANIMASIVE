@@ -42,8 +42,8 @@ const Navbar = () => {
   //     window.addEventListener("scroll", handleScroll);
 
   return (
-    <nav className="flex fixed w-full bg-white dark:bg-[#121212] z-50">
-      <div className="flex flex-row w-screen items-center justify-between mx-4  md:justify-between md:mx-20 py-6">
+    <nav className="flex fixed w-full bg-[#D9D9D9] dark:bg-[#121212] z-50">
+      <div className="flex flex-row w-full items-center justify-between mx-4  md:justify-between md:mx-20 py-6">
         <div className="flex  items-center gap-10">
           <Link href='/'>
             <Image

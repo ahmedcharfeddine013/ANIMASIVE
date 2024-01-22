@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TopSales = () => {
+const page = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const TopSales = () => {
   )
 }
 
-export default TopSales
+export default page

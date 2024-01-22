@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,15 +11,13 @@ import {
 } from "@/components/ui/carousel";
 import { productProps } from "@/interfaces/types";
 
-
-
-export function CarouselDemo() {
+export function CarouselSpacing() {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8000/new_collection");
+        const res = await fetch("http://localhost:8000/top_sellers");
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -29,25 +26,34 @@ export function CarouselDemo() {
     };
     fetchData();
   }, []);
-
-  console.log(products);
-
   return (
     <Carousel className="flex mx-3  items-center justify-center w-fit">
       <CarouselContent className="flex items-center w-[300px]  lg:w-[500px]">
-        {products.map((product: productProps, index) => (
-          <CarouselItem key={index}>
-            <div>
+        {/* {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+            <div className="p-1">
               <Card>
-                <img src={product.image} alt="" />
-                <div className="py-3 space-y-2 flex flex-col items-center justify-center">
-                  <p>{product.title}</p>
-                  <p>{product.price}</p>
-                </div>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-2xl font-semibold">{index + 1}</span>
+                </CardContent>
               </Card>
             </div>
           </CarouselItem>
-        ))}
+        ))} */}
+
+        {
+          products.map((product : productProps, index) => (
+            <CarouselItem key={index} >
+              <div>
+                <Card>
+                  <CardContent className="p-0">
+                    <img src={product.image} alt={product.title} />
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))
+        }
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
