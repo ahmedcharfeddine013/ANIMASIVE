@@ -4,19 +4,19 @@
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "naruto"
     },
     {
       "title": "product 2",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/ZTM5NP2CPR_RachelSmall001_1600x.jpg?v=1699900332",
-      "main": false
+      "anime": "demons slayer"
     },
     {
       "title": "product 3",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/TSM5NNVCPR_RachelSmall001_1600x.jpg?v=1699900427",
-      "main": false
+      "anime": "berserk"
     }
   ],
   "top_sellers": [
@@ -24,31 +24,31 @@
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "naruto"
     },
     {
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "naruto"
     },
     {
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "one piece"
     },
     {
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "one piece"
     },
     {
       "title": "product 1",
       "price": "$20.99",
       "image": "https://atsuko.com/cdn/shop/files/LSA5V50CPE_JordanLarge001_1600x.jpg?v=1699895858",
-      "main": true
+      "anime": "naruto"
     }
   ]
 }
