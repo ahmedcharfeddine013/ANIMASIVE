@@ -2,7 +2,7 @@
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { useRouter } from "next/navigation";
 import React, { useTransition } from "react";
-import { deleteProduct, toggleProductAvailability } from "./product";
+import { deleteProduct, toggleProductAvailability } from "../_actions/product";
 
 const ActiveToggleDropdownItem = ({
   id,
