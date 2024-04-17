@@ -8,3 +8,7 @@ export default function AdminSalesPage() {
     </div>
   );
 }
+
+function salesTables() {
+  
+}

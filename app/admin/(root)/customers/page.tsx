@@ -20,21 +20,6 @@ import React from "react";
 import DeleteDropdownUser from "./_components/CustomerActions";
 import PageHeader from "../../_components/PageHeader";
 
-async function getCustomers() {
-  const [countCustomers, Customers] = await Promise.all([
-    db.user.count(),
-    db.user.findMany({
-      select: {
-        email: true,
-        orders: true,
-      },
-    }),
-  ]);
-  return {
-    countCustomers,
-    Customers,
-  };
-}
 
 export default function AdminCustomersPage() {
   return (
