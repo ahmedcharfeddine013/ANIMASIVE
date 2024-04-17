@@ -1,4 +1,4 @@
-import  {Nav, NavLink } from "@/components/Nav";
+import AdminNavbar, { NavLink } from "./_components/AdminNavbar";
 
 export const dynamic = "force-dynamic";
 
@@ -9,12 +9,12 @@ export default function AdminLayout({
 }>) {
   return (
     <>
-      <Nav>
+      <AdminNavbar>
         <NavLink href="/admin">Dashboard</NavLink>
         <NavLink href="/admin/products">Products</NavLink>
         <NavLink href="/admin/users">Customers</NavLink>
         <NavLink href="/admin/orders">Sales</NavLink>
-      </Nav>
+      </AdminNavbar>
       <div className="container my-6">{children}</div>
     </>
   );
