@@ -8,14 +8,14 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <section className="flex flex-row  w-screen">
       <AdminNavbar>
         <NavLink href="/admin">Dashboard</NavLink>
         <NavLink href="/admin/products">Products</NavLink>
         <NavLink href="/admin/users">Customers</NavLink>
         <NavLink href="/admin/orders">Sales</NavLink>
       </AdminNavbar>
-      <div className="container my-6">{children}</div>
-    </>
+      <div className="container my-6 p-6">{children}</div>
+    </section>
   );
 }
