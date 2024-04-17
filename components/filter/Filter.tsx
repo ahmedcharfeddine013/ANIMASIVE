@@ -11,7 +11,10 @@ const Filter = () => {
         <h1 className="text-2xl text-white dark:text-black">ANIME</h1>
         <div className="flex flex-wrap gap-4">
           {animes.map((anime) => (
-            <label key={anime} className="px-4 py-2 w-fit h-fit bg-white text-black">
+            <label
+              key={anime}
+              className="px-4 py-2 w-fit h-fit bg-white text-black"
+            >
               {""} {anime} {""}
             </label>
           ))}
@@ -21,7 +24,10 @@ const Filter = () => {
         <h1 className="text-2xl text-white dark:text-black">CATEGORIES</h1>
         <div className="flex flex-wrap gap-3">
           {categories.map((category) => (
-            <label key={category} className="px-4 py-2 h-fit bg-white text-black">
+            <label
+              key={category}
+              className="px-4 py-2 h-fit bg-white text-black"
+            >
               {""} {category} {""}
             </label>
           ))}

@@ -45,7 +45,7 @@ const Navbar = () => {
     <nav className="flex fixed w-full bg-[#D9D9D9] dark:bg-[#121212] z-50">
       <div className="flex flex-row w-full items-center justify-between mx-4  md:justify-between md:mx-20 py-6">
         <div className="flex  items-center gap-10">
-          <Link href='/'>
+          <Link href="/">
             <Image
               src={theme === "light" ? logo_white : logo_dark}
               alt="ANIMASIVE"
@@ -62,10 +62,12 @@ const Navbar = () => {
           <Search />
           <ThemeToggle />
           <ShoppingCartIcon />
-          <AccountCircleIcon fontSize="large" />
+          <Link href="login">
+            <AccountCircleIcon fontSize="large" />
+          </Link>
         </div>
 
-    {/* responsive for phones */}
+        {/* responsive for phones */}
 
         <div className="flex lg:hidden">
           <DropdownMenu>
@@ -81,7 +83,10 @@ const Navbar = () => {
             >
               <DropdownMenuItem>
                 <div className="p-6 border-b-2 focus:bg-none">
-                  <AccountCircleIcon fontSize="large" className="cursor-pointer" />
+                  <AccountCircleIcon
+                    fontSize="large"
+                    className="cursor-pointer"
+                  />
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem className="bg-transparent">

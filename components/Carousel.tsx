@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/carousel";
 import { productProps } from "@/interfaces/types";
 
-
-
 export function CarouselDemo() {
   const [products, setProducts] = React.useState([]);
 
@@ -33,24 +31,26 @@ export function CarouselDemo() {
   console.log(products);
 
   return (
-    <Carousel className="flex mx-3  items-center justify-center w-fit">
-      <CarouselContent className="flex items-center w-[300px]  lg:w-[500px]">
-        {products.map((product: productProps, index) => (
-          <CarouselItem key={index}>
-            <div>
-              <Card>
-                <img src={product.image} alt="" />
-                <div className="py-3 space-y-2 flex flex-col items-center justify-center">
-                  <p>{product.title}</p>
-                  <p>{product.price}</p>
-                </div>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <div>
+      <Carousel className="flex mx-3  items-center justify-center w-fit">
+        <CarouselContent className="flex items-center w-[300px]  lg:w-[500px]">
+          {products.map((product: productProps, index) => (
+            <CarouselItem key={index}>
+              <div>
+                <Card>
+                  <img src={product.image} alt="" />
+                  <div className="py-3 space-y-2 flex flex-col items-center justify-center">
+                    <p>{product.title}</p>
+                    <p>{product.price}</p>
+                  </div>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
   );
 }
