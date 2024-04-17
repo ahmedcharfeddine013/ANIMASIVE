@@ -12,7 +12,7 @@ export default function AdminLayout({
       <AdminNavbar>
         <NavLink href="/admin">Dashboard</NavLink>
         <NavLink href="/admin/products">Products</NavLink>
-        <NavLink href="/admin/users">Customers</NavLink>
+        <NavLink href="/admin/customers">Customers</NavLink>
         <NavLink href="/admin/orders">Sales</NavLink>
       </AdminNavbar>
       <div className="container my-6 p-6">{children}</div>
