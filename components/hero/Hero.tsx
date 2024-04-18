@@ -1,6 +1,29 @@
 import React from "react";
-import { CarouselDemo } from "../Carousel";
 import { Button } from "../ui/button";
+import { Product } from "@prisma/client";
+import db from "@/db/db";
+import { cache } from "@/lib/cache";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
+import { Card, CardContent } from "../ui/card";
+import Image from "next/image";
+
+const getNewCollection = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailableForPurchase: true },
+      orderBy: { createdAt: "desc" },
+      take: 4,
+    });
+  },
+  ["/", "getNewCollection"],
+  { revalidate: 60 * 60 * 24 }
+);
 
 const Hero = () => {
   return (
@@ -19,10 +42,44 @@ const Hero = () => {
         </Button>
       </div>
       <div>
-        <CarouselDemo />
+        <Carousel className="flex mx-3  items-center justify-center w-fit">
+          <CarouselContent className="flex items-center w-[300px]  lg:w-[500px]">
+            <NewCollectionCarousel productsFetcher={getNewCollection} />
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   );
 };
 
 export default Hero;
+
+async function NewCollectionCarousel({
+  productsFetcher,
+}: {
+  productsFetcher: () => Promise<Product[]>;
+}) {
+  return (await productsFetcher()).map((product) => (
+    <ProductCarousel key={product.id} {...product} />
+  ));
+}
+
+type ProductCarouselProps = {
+  name: string;
+  imagePath: string;
+};
+
+function ProductCarousel({ name, imagePath }: ProductCarouselProps) {
+  return (
+    <CarouselItem className="w-fit h-fit items-center flex justify-center">
+      <Card>
+        <CardContent className="p-0">
+          {/* <h1>{name}</h1> */}
+          <Image src={imagePath} alt={name} height={300} width={300} />
+        </CardContent>
+      </Card>
+    </CarouselItem>
+  );
+}

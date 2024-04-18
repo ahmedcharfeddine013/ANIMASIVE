@@ -1,6 +1,5 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { CarouselSpacing } from "./CarouselItem";
+// "use client";
+import React from "react";
 import { Button } from "../ui/button";
 import { cache } from "@/lib/cache";
 import db from "@/db/db";
@@ -12,10 +11,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { productProps } from "@/interfaces/types";
 import Image from "next/image";
 import { Product } from "@prisma/client";
-// import { CarouselSize } from "./CarouselItem";
 
 const getTopSeller = cache(
   () => {
@@ -55,24 +52,11 @@ const TopSales = () => {
 
 export default TopSales;
 
-async function TopSalesCarousel() {
-  const products = await getNewCollection();
+function TopSalesCarousel() {
+  // const products = await getNewCollection();
   return (
     <Carousel className="flex mx-3  items-center justify-center w-fit">
       <CarouselContent className="flex items-center w-[300px]  lg:w-[500px]">
-
-        {/* {products.map((product) => (
-          <CarouselItem key={product.id}>
-            <div>
-              <Card>
-                <CardContent className="p-0">
-                  <h1>{product.name}</h1>
-                  <Image src={product.imagePath} alt={product.name} />
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))} */}
         <ProductsSuspense productsFetcher={getTopSeller} />
       </CarouselContent>
       <CarouselPrevious />
@@ -91,25 +75,20 @@ async function ProductsSuspense({
   ));
 }
 
-type ProductCardProps = {
-  id: string;
+type ProductCarouselProps = {
   name: string;
-  priceInCents: number;
-  description: string;
   imagePath: string;
 };
 
-function ProductCarousel({ id, name, imagePath }: ProductCardProps) {
+function ProductCarousel({ name, imagePath }: ProductCarouselProps) {
   return (
-    <CarouselItem>
-      <div>
-        <Card>
-          <CardContent className="p-0">
-            <h1>{name}</h1>
-            <Image src={imagePath} alt={name} />
-          </CardContent>
-        </Card>
-      </div>
+    <CarouselItem className="w-fit h-fit items-center flex justify-center">
+      <Card>
+        <CardContent className="p-0">
+          {/* <h1>{name}</h1> */}
+          <Image src={imagePath} alt={name} height={300} width={300} />
+        </CardContent>
+      </Card>
     </CarouselItem>
   );
 }
