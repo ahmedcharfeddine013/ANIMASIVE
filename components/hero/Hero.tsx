@@ -12,6 +12,7 @@ import {
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 const getNewCollection = cache(
   () => {
@@ -69,17 +70,20 @@ async function NewCollectionCarousel({
 type ProductCarouselProps = {
   name: string;
   imagePath: string;
+  id: string;
 };
 
-function ProductCarousel({ name, imagePath }: ProductCarouselProps) {
+function ProductCarousel({ id, name, imagePath }: ProductCarouselProps) {
   return (
     <CarouselItem className="w-fit h-fit items-center flex justify-center">
-      <Card>
-        <CardContent className="p-0">
-          {/* <h1>{name}</h1> */}
-          <Image src={imagePath} alt={name} height={300} width={300} />
-        </CardContent>
-      </Card>
+      <Link href={`/product/${id}`}>
+        <Card>
+          <CardContent className="p-0">
+            {/* <h1>{name}</h1> */}
+            <Image src={imagePath} alt={name} height={300} width={300} />
+          </CardContent>
+        </Card>
+      </Link>
     </CarouselItem>
   );
 }
