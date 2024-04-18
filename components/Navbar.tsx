@@ -27,18 +27,9 @@ import { cache } from "@/lib/cache";
 import db from "@/db/db";
 import { Product } from "@prisma/client";
 
-
-
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [products, setProducts] = useState<Product[]>([]);
-  //   const [scrolled, setScrolled] = useState(false);
-
-  //     const handleScroll = () => {
-  //       const isScrolled = window.scrollY > 0;
-  //       setScrolled(isScrolled);
-  //     };
-  //     window.addEventListener("scroll", handleScroll);
   const getProducts = cache(
     () => {
       return db.product.findMany({
@@ -69,9 +60,8 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden lg:flex flex-row space-x-8 items-center ">
-    
-            <Search />
-        
+          <Search />
+
           <ThemeToggle />
           <ShoppingCartIcon />
           <Link href="login">
