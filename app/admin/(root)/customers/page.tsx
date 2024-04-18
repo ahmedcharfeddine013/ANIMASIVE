@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table";
 import db from "@/db/db";
 import { formatNumber } from "@/lib/formatters";
-import { Delete, MoreVertical } from "lucide-react";
+import {  MoreVertical } from "lucide-react";
 import React from "react";
 import DeleteDropdownUser from "./_components/CustomerActions";
 import PageHeader from "../../_components/PageHeader";

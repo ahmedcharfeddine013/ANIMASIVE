@@ -9,32 +9,32 @@ import { motion, useAnimation } from "framer-motion";
 const Page = () => {
   const controls = useAnimation();
 
-  const handleScrollAnimation = () => {
-    const elements = document.querySelectorAll(".animate-scroll");
+  // const handleScrollAnimation = () => {
+  //   const elements = document.querySelectorAll(".animate-scroll");
 
-    elements.forEach((element) => {
-      const elementOffset = element.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
+  //   elements.forEach((element) => {
+  //     const elementOffset = element.getBoundingClientRect().top;
+  //     const windowHeight = window.innerHeight;
 
-      if (
-        elementOffset < windowHeight * 0.75 &&
-        element.dataset.animated !== "true"
-      ) {
-        controls.start({ opacity: 1, y: 0 });
-        element.dataset.animated = "true";
-      } else if (elementOffset > windowHeight * 0.75) {
-        element.dataset.animated = "false"; // Reset the animation flag
-      }
-    });
-  };
+  //     if (
+  //       elementOffset < windowHeight * 0.75 &&
+  //       element.dataset.animated !== "true"
+  //     ) {
+  //       controls.start({ opacity: 1, y: 0 });
+  //       element.dataset.animated = "true";
+  //     } else if (elementOffset > windowHeight * 0.75) {
+  //       element.dataset.animated = "false"; // Reset the animation flag
+  //     }
+  //   });
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScrollAnimation);
-    return () => {
-      window.removeEventListener("scroll", handleScrollAnimation);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [controls]);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScrollAnimation);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScrollAnimation);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [controls]);
 
   return (
     <div>
