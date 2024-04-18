@@ -23,9 +23,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import { cache } from "@/lib/cache";
+import db from "@/db/db";
+import { Product } from "@prisma/client";
+
+
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [products, setProducts] = useState<Product[]>([]);
   //   const [scrolled, setScrolled] = useState(false);
 
   //     const handleScroll = () => {
@@ -33,6 +39,17 @@ const Navbar = () => {
   //       setScrolled(isScrolled);
   //     };
   //     window.addEventListener("scroll", handleScroll);
+  const getProducts = cache(
+    () => {
+      return db.product.findMany({
+        where: { isAvailableForPurchase: true },
+      });
+    },
+    ["/", "/getProducts"],
+    {
+      revalidate: 60 * 60 * 24,
+    }
+  );
 
   return (
     <nav className="flex fixed w-full bg-[#D9D9D9] dark:bg-[#121212] z-50">
@@ -52,7 +69,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden lg:flex flex-row space-x-8 items-center ">
-          <Search />
+    
+            <Search />
+        
           <ThemeToggle />
           <ShoppingCartIcon />
           <Link href="login">
