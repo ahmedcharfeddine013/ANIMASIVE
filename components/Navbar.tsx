@@ -21,14 +21,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import {
-  Mail,
-  MessageSquare,
-  Moon,
-  PlusCircle,
-  Sun,
-  UserPlus,
-} from "lucide-react";
+
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
