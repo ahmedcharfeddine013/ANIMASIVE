@@ -1,73 +1,71 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import NewCollection from "../../../components/NewCollection";
-import Filter from "@/components/filter/Filter";
-import { SelectDemo } from "@/components/filter/Sort";
-import Items from "@/components/filter/Items";
-import { motion, useAnimation } from "framer-motion";
 import { cache } from "@/lib/cache";
 import db from "@/db/db";
-import { Card, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
-import ShopProductCard from "./_components/ShopProductCard";
+import ShopProductCard, {
+  ProductCardSkeleton,
+} from "./_components/ShopProductCard";
 
-const getProducts = cache(
-  () => {
-    return db.product.findMany({
-      where: { isAvailableForPurchase: true },
-      orderBy: { name: "asc" },
-    });
-  },
-  ["/", "getProducts"],
-  { revalidate: 60 * 60 * 24 }
-);
+const getProducts = cache(() => {
+  return db.product.findMany({
+    where: { isAvailableForPurchase: true },
+    orderBy: { name: "asc" },
+  });
+}, ["/products", "getProducts"]);
 
-const Page = () => {
-  const controls = useAnimation();
+const ShopPage = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsData = await getProducts();
+        setProducts(productsData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
       <NewCollection />
       <div className="flex flex-col items-center justify-center">
         <h1 className="pt-20 text-3xl">SHOP</h1>
-        <div className="flex flex-col lg:flex-row pt-20 gap-4 items-center lg:items-start">
-          <motion.div
-            className="animate-scroll mx-10"
-            initial={{ opacity: 0, y: 200 }}
-            animate={controls}
-            data-animated="false"
-          >
-            <Filter />
-          </motion.div>
-          <div className="flex flex-col px-4 gap-4">
-            <div className="flex items-center justify-end">
-              <SelectDemo />
-            </div>
-            <div>
-              <Items />
-            </div>
-          </div>
-        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-20">
+        {isLoading ? (
+          <>
+            {/* <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton /> */}
+            <p>Loading...</p>
+          </>
+        ) : (
+          products.map((product) => (
+            <ShopProductCard key={product.id} {...product} />
+          ))
+        )}
       </div>
     </div>
   );
 };
 
-export default Page;
+export default ShopPage;
 
-// interface shopProductCardProps {
-//   id: string;
-//   name: string;
-//   image: string;
-//   description: string;
+// async function ProductsSuspense() {
+//   const products = await getProducts();
+//   return products.map((product) => (
+//     <ShopProductCard key={product.id} {...product} />
+//   ));
 // }
-
-async function ProductSuspense({
-  productsFetcher,
-}: {
-  productsFetcher: () => Promise<Product[]>;
-}) {
-  return (await productsFetcher()).map((product) => (
-    <ShopProductCard key={product.id} {...product} />
-  ));
-}
