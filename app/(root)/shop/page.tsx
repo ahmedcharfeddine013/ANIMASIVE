@@ -5,36 +5,25 @@ import Filter from "@/components/filter/Filter";
 import { SelectDemo } from "@/components/filter/Sort";
 import Items from "@/components/filter/Items";
 import { motion, useAnimation } from "framer-motion";
+import { cache } from "@/lib/cache";
+import db from "@/db/db";
+import { Card, CardHeader } from "@/components/ui/card";
+import { Product } from "@prisma/client";
+import ShopProductCard from "./_components/ShopProductCard";
+
+const getProducts = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailableForPurchase: true },
+      orderBy: { name: "asc" },
+    });
+  },
+  ["/", "getProducts"],
+  { revalidate: 60 * 60 * 24 }
+);
 
 const Page = () => {
   const controls = useAnimation();
-
-  // const handleScrollAnimation = () => {
-  //   const elements = document.querySelectorAll(".animate-scroll");
-
-  //   elements.forEach((element) => {
-  //     const elementOffset = element.getBoundingClientRect().top;
-  //     const windowHeight = window.innerHeight;
-
-  //     if (
-  //       elementOffset < windowHeight * 0.75 &&
-  //       element.dataset.animated !== "true"
-  //     ) {
-  //       controls.start({ opacity: 1, y: 0 });
-  //       element.dataset.animated = "true";
-  //     } else if (elementOffset > windowHeight * 0.75) {
-  //       element.dataset.animated = "false"; // Reset the animation flag
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScrollAnimation);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScrollAnimation);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [controls]);
 
   return (
     <div>
@@ -65,3 +54,20 @@ const Page = () => {
 };
 
 export default Page;
+
+// interface shopProductCardProps {
+//   id: string;
+//   name: string;
+//   image: string;
+//   description: string;
+// }
+
+async function ProductSuspense({
+  productsFetcher,
+}: {
+  productsFetcher: () => Promise<Product[]>;
+}) {
+  return (await productsFetcher()).map((product) => (
+    <ShopProductCard key={product.id} {...product} />
+  ));
+}

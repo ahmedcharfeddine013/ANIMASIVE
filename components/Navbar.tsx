@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import logo_white from "../public/logo/logo beige 1 bordered.png";
 import logo_dark from "../public/logo/bordered logo beige 2.png";
