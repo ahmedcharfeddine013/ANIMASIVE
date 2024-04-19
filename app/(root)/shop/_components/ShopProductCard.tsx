@@ -26,19 +26,20 @@ export default function ShopProductCard({
   imagePath,
 }: ShopProductCard) {
   return (
-    <Card>
-      <div>
-        <Image src={imagePath} alt={name} height={300} width={300} />
-      </div>
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardFooter>
-        <Button asChild size="lg" className="w-full">
-          <Link href={`/products/${id}`}>Purchase</Link>
-        </Button>
-      </CardFooter>
+    <Card className="w-[300px] flex flex-col h-full justify-between">
+      <Link href={`/product/${id}`}>
+        <div>
+          <Image src={imagePath} alt={name} height={300} width={300} />
+        </div>
+        <CardHeader>
+          <CardTitle>{name}</CardTitle>
+        </CardHeader>
+        <CardFooter>
+          <Button asChild size="lg" className="w-full">
+            <Link href={`/products/${id}`}>Purchase</Link>
+          </Button>
+        </CardFooter>
+      </Link>
     </Card>
   );
 }
