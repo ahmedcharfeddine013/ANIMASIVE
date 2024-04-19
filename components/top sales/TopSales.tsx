@@ -85,7 +85,6 @@ function ProductCarousel({ name, imagePath }: ProductCarouselProps) {
     <CarouselItem className="w-fit h-fit items-center flex justify-center">
       <Card>
         <CardContent className="p-0">
-          {/* <h1>{name}</h1> */}
           <Image src={imagePath} alt={name} height={300} width={300} />
         </CardContent>
       </Card>
