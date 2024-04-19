@@ -7,9 +7,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
+} from "../../../../components/ui/carousel";
 import { productProps } from "@/interfaces/types";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "../../../../components/ui/card";
 import { cache } from "@/lib/cache";
 import db from "@/db/db";
 import { Product } from "@prisma/client";
